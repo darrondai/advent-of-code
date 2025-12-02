@@ -89,6 +89,29 @@ def calc_sum_invalid_ids_smart(ranges: list[list[int]]) -> int:
     return total
 
 
+# PART 2 ----------------------------------------------
+# naive is just to iterate through, and then the check is a bit more complicated
+# how do we handle dupes? (1)(1)(1)(1) = (11)(11)
+# the naive way only counts the number once, but the generation method can cause dupes
+# generation is the same idea, but everytime we hit a number that is too big,
+# we decrease the sequence length and start back at a sequence based on the start number
+# only check sequences where len(number) % len(sequence) == 0
+# could handle the dupes using a set i guess, then sum at the end
+
+
+def is_repeated_sequence_part_2(number: int) -> bool:
+    digits = str(number)
+    # have to try all possible subsequences
+    # start from half, then third, then fourth, etc
+    # 1 / seq_length
+    # basically factoring the length of the number
+    # but what happens when you have a range between numbers with different lengths
+
+    n = len(digits)
+
+    return False
+
+
 def main() -> None:
     INPUT_FILE = "input.txt"
     ranges = parse_input(INPUT_FILE)
