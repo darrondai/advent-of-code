@@ -1,4 +1,5 @@
 import math
+import re
 from time import perf_counter_ns
 
 
@@ -98,18 +99,24 @@ def calc_sum_invalid_ids_smart(ranges: list[list[int]]) -> int:
 # only check sequences where len(number) % len(sequence) == 0
 # could handle the dupes using a set i guess, then sum at the end
 
+def calc_part_2(ranges: list[list[int]]) -> int:
+    total = 0
 
-def is_repeated_sequence_part_2(number: int) -> bool:
-    digits = str(number)
     # have to try all possible subsequences
     # start from half, then third, then fourth, etc
     # 1 / seq_length
     # basically factoring the length of the number
     # but what happens when you have a range between numbers with different lengths
 
-    n = len(digits)
+    # can just use regex with pattern that repeat at least twice
+    # basically: (group)\1+
+    pattern = re.compile(r"^(\d+)\1+$")
+    for start, end in ranges:
+        for id_number in range(start, end + 1):
+            if pattern.match(str(id_number)):
+                total += id_number
 
-    return False
+    return total
 
 
 def main() -> None:
@@ -130,6 +137,13 @@ def main() -> None:
     smart = calc_sum_invalid_ids_smart(ranges)
     end_time = perf_counter_ns()
     print("smart approach finished in: ", end_time - start_time, "ns")
+    print(smart)
+
+    # part 2
+    start_time = perf_counter_ns()
+    smart = calc_part_2(ranges)
+    end_time = perf_counter_ns()
+    print("part 2 approach finished in: ", end_time - start_time, "ns")
     print(smart)
 
 

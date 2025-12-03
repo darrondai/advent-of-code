@@ -1,4 +1,4 @@
-from invalid_ids import calc_sum_invalid_ids
+from invalid_ids import calc_part_2
 
 
 def test_example_part_2():
@@ -17,6 +17,6 @@ def test_example_part_2():
     ]
 
     result = 0
-    result = calc_sum_invalid_ids(ranges)
+    result = calc_part_2(ranges)
 
     assert result == 4174379265
