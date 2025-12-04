@@ -2,7 +2,6 @@ from joltage import (
     accumulate_max_voltages,
     accumulate_max_voltages_part_2,
     naive,
-    smart,
     calc_max_voltage_part_2,
 )
 
